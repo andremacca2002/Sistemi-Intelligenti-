@@ -6,7 +6,7 @@ from GeneratePath import PathGenerator
 def main():
     # Creazione dell'interfaccia grafica
     window = tk.Tk()
-    window.title("Tutti all'UNIBS")
+    window.title("Traffic")
     window.geometry("400x300")
 
     #stringa vuota per separare la grafica dal bordo superiore

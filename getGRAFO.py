@@ -1,6 +1,19 @@
 import osmnx as ox
 import matplotlib.pyplot as plt
 
+# Aggiungi dei punti alla mappa
+coordinate_punti = [(45.5118783, 10.2792341),#santa eufemia 
+    (45.5215785, 10.2632404),
+    (45.5023621, 10.2746251),
+    (45.5247029, 10.2435765),
+    (45.5198489, 10.1956535),
+    (45.5368811, 10.2028181),
+    (45.5383315, 10.2318613),
+    (45.5273072, 10.1761407),
+    (45.5420940, 10.1842370),
+    (45.5639428, 10.2314365)]#UNIBS 
+    
+
 def plotOsmnx(percorso, grafo):
     # Definisci le coordinate del centro dell'area di interesse
     lat, lon = 45.5368, 10.2170  #coordinate di Brescia centro
@@ -11,15 +24,6 @@ def plotOsmnx(percorso, grafo):
     # Crea il grafo della rete stradale per l'area di interesse senza utilizzare la cache
     G = ox.graph_from_point((lat, lon), dist=dist, dist_type='bbox', network_type='drive', )
     _, ax = ox.plot_graph(G, node_size=1, node_color='k', edge_linewidth=1, show=False, close=False, bgcolor='w', edge_color='grey', figsize=(15,15))
-    
-    # Aggiungi dei punti alla mappa
-    coordinate_punti = [(45.5118783, 10.2792341),#santa eufemia 
-        (45.5215785, 10.2632404),
-        (45.5198489, 10.1956535),
-        (45.5247029, 10.2435765),
-        (45.5273072, 10.1761407),
-        (45.5383315, 10.2318613),
-        (45.5639428, 10.2314365)]#UNIBS 
     
     #le cordinate vengono associate al nodo più vicino e rappresentati sulla mappa 
     for node in grafo.nodes():
@@ -47,3 +51,6 @@ def plotOsmnx(percorso, grafo):
         i += 1
     _, ax = ox.plot_graph_route(G, shortest_path, ax=ax, route_linewidth=2, route_alpha=1.0) #colora di rosso il percorso ottimale 
     plt.show()
+
+def getNumeroNodi():
+    return len(coordinate_punti)

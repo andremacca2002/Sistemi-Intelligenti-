@@ -1,15 +1,20 @@
 from queue import PriorityQueue
 from heuristic import heuristic
 
-geo_coord = {
-    0: (45.5117132, 10.2802436),
-    1: (45.5215785, 10.2632404),
-    2: (45.5198489, 10.1956535),
-    3: (45.5247029, 10.2435765),
-    4: (45.5256735, 10.1762980),
-    5: (45.5360547, 10.2322707),
-    6: (45.5639428, 10.2314365)
-}
+coordinate = []
+
+with open(r'c:\Users\fabio\Desktop\prog\Sistemi-Intelligenti-\coordinate.txt') as file:
+        # Leggo le linee del file e le aggiungo alla lista
+        for l in file.readlines():
+            coordinate.append(l)
+
+
+geo_coord = [
+    tuple(map(float, point.strip('()\n ').split(',')))
+    for point in coordinate
+]
+
+print(geo_coord)
 
 class AStar:
     
@@ -20,7 +25,9 @@ class AStar:
     def solve(self, start, goal):
         frontier = PriorityQueue() #è una coda di priorità che tiene traccia dei nodi da esaminare. Inizia con il nodo di partenza.
         frontier.put((0, start))
+        
         came_from = {} #è un dizionario che tiene traccia dei nodi precedenti durante la ricerca del percorso ottimale.
+
         g_score = {nodi: float("inf") for nodi in self.graph} #è un dizionario che tiene traccia del costo del percorso più breve fino a ogni nodo dal nodo di partenza.
         g_score[start] = 0 #è un dizionario che tiene traccia della stima del costo totale dal nodo di partenza al nodo di destinazione
         #passando attraverso un certo nodo, calcolato sommando il costo effettivo (g_score) e una stima del costo rimanente (heuristic).
