@@ -1,12 +1,12 @@
 import tkinter as tk
 import matplotlib
 matplotlib.use("TkAgg")
-from GeneratePath import PathGenerator
+from generatePath import PathGenerator
 
 def main():
     # Creazione dell'interfaccia grafica
     window = tk.Tk()
-    window.title("Traffic")
+    window.title("Traffic pathfinder")
     window.geometry("400x300")
 
     #stringa vuota per separare la grafica dal bordo superiore
@@ -21,13 +21,18 @@ def main():
     orario_input = tk.Entry(window)
     orario_input.pack()
 
+    checkbox_var = tk.BooleanVar()
+    print(checkbox_var.get())
+    # Creare il checkbox
+    checkbox = tk.Checkbutton(window, text="Simula incidenti", variable=checkbox_var)
+    checkbox.pack()
+
     #stringa vuota per separare input orario da pulsante
     stringa_spazio2 = tk.Label(window, text="")
     stringa_spazio2.pack(pady=5)
 
-
     # Pulsante per generare il percorso
-    generate_button = tk.Button(window, text="Genera Percorso", command=lambda: PathGenerator(orario_input.get()).generate_path())
+    generate_button = tk.Button(window, text="Genera percorso", command=lambda: PathGenerator(orario_input.get()).generate_path(checkbox_var.get()))
     generate_button.pack(ipadx=5, ipady=3)
 
     # Funzione per abilitare il pulsante di generazione quando viene inserito l'orario
