@@ -7,7 +7,6 @@ def update_traffic(graph, hour, nNodi, checkbox_var):
     else:
         i = -1
 
-
     count = 0
     
     for u, v, weight in graph.edges(data='weight', default=1):
@@ -20,8 +19,8 @@ def update_traffic(graph, hour, nNodi, checkbox_var):
             stops *= 2
 
         # Aumenta il peso della tratta in base al numero di passaggi pedonali e agli stop
-        weight += pedestrian * 0.4  # Aggiungi 0.1 al peso per ogni passaggio pedonale
-        weight += stops * 0.8  # Aggiungi 0.5 al peso per ogni stop
+        weight += pedestrian * 0.2  # Aggiungi 0.1 al peso per ogni passaggio pedonale
+        weight += stops * 0.5  # Aggiungi 0.5 al peso per ogni stop
  
         if i == v:
             weight = float("inf")
@@ -30,9 +29,5 @@ def update_traffic(graph, hour, nNodi, checkbox_var):
                 print("Al nodo " + str(v) + " è presente un incidente")
                 graph.nodes[v]['incident'] = True  # Imposta un attributo "incident" al nodo 
                 count += 1
-
-            
-
-              
-            
+ 
         graph[u][v]['weight'] = weight
