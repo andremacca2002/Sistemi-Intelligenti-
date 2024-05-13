@@ -1,7 +1,7 @@
 import tkinter as tk
 import matplotlib
 matplotlib.use("TkAgg")
-from generatePath import PathGenerator
+from GeneratePath import PathGenerator
 
 def main():
     # Creazione dell'interfaccia grafica

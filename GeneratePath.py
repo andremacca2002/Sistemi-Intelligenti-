@@ -1,9 +1,10 @@
 import networkx as nx
 from AStar import AStar
 from tkinter import messagebox
-import updateTraffic
+import UpdateTraffic
 import graph as draw
 import importStreets
+import importCoord
 
 class PathGenerator:
     def __init__(self, orario_input):
@@ -12,6 +13,7 @@ class PathGenerator:
     def generate_path(self, checkbox_var):
         orario = self.orario_input
         print(orario)
+
         try:
             hour, minute = map(int, orario.split(':'))
             
@@ -20,16 +22,17 @@ class PathGenerator:
 
             # Creazione del grafo
             graph = nx.DiGraph()
+            archi = importStreets.readStreets()
+            coord, _ = importCoord.readCoord()  
+            nNodes=len(coord)
 
-            nodes = importStreets.readStreets()
-
-            graph.add_edges_from(nodes)
+            graph.add_edges_from(archi)
 
             # Converti l'ora e i minuti in un'unica rappresentazione dell'ora del giorno
             current_time = hour + minute / 60
 
             # Aggiorna i pesi dei collegamenti in base al traffico ( se è stata inserito un orario tra le 7-9 oppure 17-19 )
-            updateTraffic.update_traffic(graph, current_time, len(nodes), checkbox_var)
+            UpdateTraffic.update_traffic(graph, current_time, nNodes, checkbox_var)
 
             #istanza classe Astar
             astar = AStar(graph)
@@ -42,6 +45,7 @@ class PathGenerator:
 
             #visualizzo la mappa 
             draw.plotOsmnx(percorso_ottimale, graph)
+
         except ValueError as e:
             print("Errore:", e)  # Stampa l'eccezione specifica
             messagebox.showerror("Errore", "Formato supportato: 'HH:mm'") #messaggio in uscita se viene sollevata l'eccezione sul formato

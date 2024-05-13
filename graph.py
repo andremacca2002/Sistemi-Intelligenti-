@@ -4,7 +4,7 @@ import importCoord
 
 # Aggiungi dei punti alla mappa
 geo_coord, citta = importCoord.readCoord()  
-
+print(len(geo_coord))
 def plotOsmnx(percorso, grafo):
     # Definisci le coordinate del centro dell'area di interesse
     lat, lon = map(float, citta.split(','))  #coordinate di Brescia centro
@@ -18,6 +18,7 @@ def plotOsmnx(percorso, grafo):
     
     #le cordinate vengono associate al nodo più vicino e rappresentati sulla mappa 
     for node in grafo.nodes():
+
         if 'incident' in grafo.nodes[node]:
             nodo = ox.nearest_nodes(G, geo_coord[node][1], geo_coord[node][0])
             ax.scatter(G.nodes[nodo]['x'], G.nodes[nodo]['y'], c='red', s=100, zorder = 3) #nodo con incidente diventa rosso 

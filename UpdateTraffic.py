@@ -2,8 +2,10 @@ import random
 
 def update_traffic(graph, hour, nNodi, checkbox_var):
     # Aggiorna i pesi dei collegamenti in base all'ora corrente
+
     if checkbox_var:
-        i = random.randrange(1, nNodi - 1)
+        i = random.randrange(1, nNodi - 2)
+        print(nNodi)
     else:
         i = -1
 
