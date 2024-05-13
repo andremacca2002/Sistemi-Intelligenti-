@@ -6,7 +6,6 @@ def update_traffic(graph, hour, nNodi, checkbox_var):
     if checkbox_var:
         i = random.randrange(1, nNodi - 2)
         
-        #print(nNodi)
     else:
         i = -1
 
@@ -22,8 +21,8 @@ def update_traffic(graph, hour, nNodi, checkbox_var):
             stops *= 2
 
         # Aumenta il peso della tratta in base al numero di passaggi pedonali e agli stop
-        weight += pedestrian * 0.2  # Aggiungi 0.1 al peso per ogni passaggio pedonale
-        weight += stops * 0.6  # Aggiungi 0.5 al peso per ogni stop
+        weight += pedestrian * 0.2  # Aggiungi 0.2 al peso per ogni passaggio pedonale
+        weight += stops * 0.6  # Aggiungi 0.6 al peso per ogni stop
  
         if i == v:
             weight = float("inf")

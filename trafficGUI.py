@@ -20,10 +20,9 @@ def main():
     # Casella di testo per l'orario
     orario_input = tk.Entry(window)
     orario_input.pack()
-
-    checkbox_var = tk.BooleanVar()
-    print(checkbox_var.get())
+    
     # Creare il checkbox
+    checkbox_var = tk.BooleanVar()
     checkbox = tk.Checkbutton(window, text="Simula incidenti", variable=checkbox_var)
     checkbox.pack()
 

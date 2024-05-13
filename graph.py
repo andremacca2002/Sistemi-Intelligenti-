@@ -4,7 +4,7 @@ import importCoord
 
 # Aggiungi dei punti alla mappa
 geo_coord, citta = importCoord.readCoord()  
-print(len(geo_coord))
+
 def plotOsmnx(percorso, grafo):
     # Definisci le coordinate del centro dell'area di interesse
     lat, lon = map(float, citta.split(','))  #coordinate di Brescia centro
